@@ -1,0 +1,17 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: deployments/Dockerfile
+    ports:
+      - "8096:8096"
+    environment:
+      - APP_HOST=0.0.0.0
+      - GRPC_PORT=8096
+      - STORAGE_DIR=/app/recordings
+      - RECORDING_BASE_URL=http://localhost:8096/recordings
+    volumes:
+      - recording-data:/app/recordings
+
+volumes:
+  recording-data:

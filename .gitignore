@@ -1,0 +1,34 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/bin/
+
+# Test
+*.test
+*.out
+/coverage.out
+
+# Env
+.env
+.env.local
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Go
+/vendor/
+
+# Recordings (local storage)
+/recordings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

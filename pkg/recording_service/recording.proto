@@ -1,0 +1,21 @@
+syntax = "proto3";
+package recording_service;
+option go_package = "github.com/psds-microservice/recording-service/pkg/gen/recording_service;recording_service";
+
+// RecordingService receives stream chunks from streaming-service, writes to storage, returns playback URL.
+service RecordingService {
+  // IngestStream: client (streaming-service) sends chunks; server writes to storage.
+  // When client closes the send side, server finalizes the file and returns recording_url.
+  rpc IngestStream(stream StreamChunk) returns (RecordingResult);
+}
+
+message StreamChunk {
+  string session_id = 1;  // streaming session_id (same as stream_session_id in session-manager)
+  bytes data = 2;
+  bool last = 3;          // true on final chunk before close
+}
+
+message RecordingResult {
+  string recording_url = 1;  // public or internal URL for playback (e.g. https://storage/recordings/{session_id}.webm)
+  string error = 2;         // non-empty if recording failed
+}
