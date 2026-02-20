@@ -91,5 +91,5 @@ func (s *Server) IngestStream(stream recording_service.RecordingService_IngestSt
 	s.mu.Unlock()
 
 	url := s.cfg.RecordingURL(sessionID)
-	return stream.Send(&recording_service.RecordingResult{RecordingUrl: url})
+	return stream.SendAndClose(&recording_service.RecordingResult{RecordingUrl: url})
 }

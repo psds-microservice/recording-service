@@ -1,8 +1,8 @@
 services:
   app:
     build:
-      context: ..
-      dockerfile: deployments/Dockerfile
+      context: ../..
+      dockerfile: recording-service/deployments/Dockerfile
     ports:
       - "8096:8096"
     environment:
